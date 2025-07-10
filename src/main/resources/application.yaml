@@ -38,3 +38,6 @@ azure:
 logging:
   level:
     'org.springframework.ai': DEBUG
+file:
+  current: 'D:\spring-boot\spring-security-demo\ai-code-agent'
+

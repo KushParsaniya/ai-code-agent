@@ -21,7 +21,7 @@ public class FileReaderTools {
      *
      * @return Map containing file paths as keys and their content as values
      */
-    @Value("${file.current:D:\\spring-boot\\spring-security-demo\\ai-code-agent\\src\\main}")
+    @Value("${file.current:D:\\spring-boot\\spring-security-demo\\ai-code-agent}")
     private String currentDirectory;
 
 

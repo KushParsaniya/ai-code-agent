@@ -34,7 +34,7 @@ public class AgentService {
         };
     }
 
-    public ChatModel desideChatModel(String query) {
+    public ChatModel decideChatModel(String query) {
         ChatClient chatClient = ChatClient.builder(openAiChatModel)
                 .defaultAdvisors(new SimpleLoggerAdvisor())
                 .build();
@@ -64,6 +64,5 @@ public class AgentService {
     }
 
     public record ChatModelDecision(String beanName, String reason) {
-
     }
 }

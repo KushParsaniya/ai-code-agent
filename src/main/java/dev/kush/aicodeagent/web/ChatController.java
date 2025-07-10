@@ -21,4 +21,9 @@ public class ChatController {
     private Query chat(@RequestBody Query query) {
         return chatService.chat(query);
     }
+
+    @GetMapping("/edit")
+    private Query edit(@RequestBody Query query) {
+        return chatService.edit(query);
+    }
 }
