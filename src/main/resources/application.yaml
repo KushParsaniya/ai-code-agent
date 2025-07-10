@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: ai-code-agent
+
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/support-chatbot
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+  neo4j:
+    uri: ${NEO4j_URI}
+    authentication:
+      username: ${NEO4J_USER}
+      password: ${NEO4J_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+  ai:
+    vectorstore:
+      neo4j:
+        embedding-dimension: 768
+        initialize-schema: true
+openai:
+  base-url: https://api.groq.com/openai
+  api-key: ${GROQ_API_KEY}
+  model: llama-3.3-70b-versatile
+
+azure:
+  chat:
+    base-url: ${AZURE_GPT41_BASE_URL}
+    api-key: ${AZURE_GPT41_API_KEY}
+    mini-model: ${AZURE_GPT41_MINI_CHAT_MODEL}
+    model: ${AZURE_GPT41_CHAT_MODEL}
+  embedding:
+    base-url: ${AZURE_EMBEDDING_BASE_URL}
+    api-key: ${AZURE_EMBEDDING_API_KEY}
+    model: ${AZURE_EMBEDDING_MODEL}
+
+logging:
+  level:
+    'org.springframework.ai': DEBUG
