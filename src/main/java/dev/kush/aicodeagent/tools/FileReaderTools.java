@@ -84,6 +84,23 @@ public class FileReaderTools {
         }
     }
 
+    @Tool(name = "getFileStructureFromDirectory", description = "Retrieves the file structure of a specified directory without reading file content.")
+    public List<FileInfo> getFileStructureFromDirectory(String directoryPath) {
+        try {
+            Path targetPath = Paths.get(directoryPath);
+            if (!Files.exists(targetPath) || !Files.isDirectory(targetPath)) {
+                throw new IllegalArgumentException("Directory does not exist: " + directoryPath);
+            }
+
+            return Files.walk(targetPath)
+                    .filter(Files::isRegularFile)
+                    .map(path -> createFileInfo(path, targetPath))
+                    .collect(Collectors.toList());
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading file structure from directory: " + directoryPath, e);
+        }
+    }
+
     /**
      * Reads content of a specific file
      *
