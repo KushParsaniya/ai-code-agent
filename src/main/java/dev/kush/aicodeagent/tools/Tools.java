@@ -1,13 +1,6 @@
 package dev.kush.aicodeagent.tools;
 
         public enum Tools {
-            FILE_READER("fileReaderTools", "file-system", """
-                File Reader Tools - Read and analyze files and directories
-                Use for: Reading file content, exploring directory structure, retrieving file metadata
-                Capabilities: Read single files, read directories recursively, get file structure info
-                Best for: Code analysis, configuration inspection, workspace exploration
-            """),
-
             FILE_WRITER("fileWriterTools", "file-system", """
                 File Writer Tools - Create and modify files and directories
                 Use for: Creating files, updating content, managing file system
