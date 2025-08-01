@@ -45,7 +45,7 @@ public class AgentService {
         final ChatModelDecision chatModelDecision = chatClient.prompt()
                 .system("""
                 You are a helpful AI assistant. your task is to help decide which chat model to use based on the query.
-                try to use cheap models first, if the query is complex or requires more advanced capabilities, use more expensive models.
+                try to use cheapest model if possible.
                 """)
                 .user("""
                         Here is user query: %s
