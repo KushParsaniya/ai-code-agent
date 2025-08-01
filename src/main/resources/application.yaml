@@ -22,7 +22,8 @@ spring:
 openai:
   base-url: https://api.groq.com/openai
   api-key: ${GROQ_API_KEY}
-  model: llama-3.3-70b-versatile
+  model: ${GROQ_MODEL:llama-3.3-70b-versatile}
+  fast-model: ${GROQ_FAST_MODEL:gemma2-9b-it}
 
 azure:
   chat:

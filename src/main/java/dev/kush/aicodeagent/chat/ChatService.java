@@ -1,6 +1,8 @@
 package dev.kush.aicodeagent.chat;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.client.advisor.vectorstore.VectorStoreChatMemoryAdvisor;
@@ -17,6 +19,7 @@ import java.util.UUID;
 @Service
 public class ChatService {
 
+    private static final Logger log = LoggerFactory.getLogger(ChatService.class);
     private final AgentService agentService;
     private final VectorStore vectorStore;
     private final ToolService toolService;
@@ -32,6 +35,10 @@ public class ChatService {
 
     public Query chat(Query query) {
         ChatModel chatModel = agentService.decideChatModel(query.text());
+        String sessionTitle = agentService.summarize(query.text());
+        log.info("Session Title: {}", sessionTitle);
+        // save it in database
+
         ChatClient chatClient = ChatClient.builder(chatModel)
                 .defaultAdvisors(new SimpleLoggerAdvisor(), VectorStoreChatMemoryAdvisor.builder(vectorStore).build())
                 .build();

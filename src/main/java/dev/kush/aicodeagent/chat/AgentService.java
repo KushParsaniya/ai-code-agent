@@ -16,13 +16,16 @@ public class AgentService {
     private final ChatModel openAiChatModel;
     private final ChatModel azureChatModel;
     private final ChatModel azureMiniChatModel;
+    private final ChatModel fastChatModel;
 
     public AgentService(@Qualifier("openAiChatModel") ChatModel openAiChatModel,
                         @Qualifier("azureChatModel") ChatModel azureChatModel,
-                        @Qualifier("azureMiniChatModel") ChatModel azureMiniChatModel) {
+                        @Qualifier("azureMiniChatModel") ChatModel azureMiniChatModel,
+                        @Qualifier("fastAiChatModel") ChatModel fastChatModel) {
         this.openAiChatModel = openAiChatModel;
         this.azureChatModel = azureChatModel;
         this.azureMiniChatModel = azureMiniChatModel;
+        this.fastChatModel = fastChatModel;
     }
 
     private ChatModel getChatModel(String beanName) {
@@ -35,7 +38,7 @@ public class AgentService {
     }
 
     public ChatModel decideChatModel(String query) {
-        ChatClient chatClient = ChatClient.builder(openAiChatModel)
+        ChatClient chatClient = ChatClient.builder(fastChatModel)
                 .defaultAdvisors(new SimpleLoggerAdvisor())
                 .build();
 
@@ -61,6 +64,20 @@ public class AgentService {
         }
         log.info("Chat model decision: beanName={}, reason={}", chatModelDecision.beanName(), chatModelDecision.reason());
         return getChatModel(chatModelDecision.beanName());
+    }
+
+    // make it Async
+    public String summarize(String query) {
+        ChatClient chatClient = ChatClient.builder(fastChatModel)
+                .defaultAdvisors(new SimpleLoggerAdvisor())
+                .build();
+
+        String prompt = "Summarize this message in 4-6 words as a session title: " + query;
+
+        return chatClient
+                .prompt(prompt)
+                .call()
+                .content();
     }
 
     public record ChatModelDecision(String beanName, String reason) {

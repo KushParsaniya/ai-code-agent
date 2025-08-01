@@ -44,6 +44,21 @@ public class ModelConfig {
                 .build();
     }
 
+    @Bean("fastAiChatModel")
+    ChatModel fastAiChatModel() {
+        OpenAiApi openAiApi = OpenAiApi.builder()
+                .apiKey(openAiProperties.getApiKey())
+                .baseUrl(openAiProperties.getBaseUrl())
+                .build();
+        OpenAiChatOptions openAiChatOptions = OpenAiChatOptions.builder()
+                .model(openAiProperties.getFastModel())
+                .build();
+        return OpenAiChatModel.builder()
+                .openAiApi(openAiApi)
+                .defaultOptions(openAiChatOptions)
+                .build();
+    }
+
     @Bean(name = "azureChatModel")
     ChatModel azureChatModel() {
         var openAIClientBuilder = new OpenAIClientBuilder()

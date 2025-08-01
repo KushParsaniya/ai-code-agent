@@ -9,6 +9,7 @@ public class OpenAiProperties {
     private String apiKey;
     private String baseUrl;
     private String model;
+    private String fastModel;
 
     public String getApiKey() {
         return apiKey;
@@ -32,5 +33,13 @@ public class OpenAiProperties {
 
     public void setModel(String model) {
         this.model = model;
+    }
+
+    public String getFastModel() {
+        return fastModel;
+    }
+
+    public void setFastModel(String fastModel) {
+        this.fastModel = fastModel;
     }
 }

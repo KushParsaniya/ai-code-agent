@@ -1,35 +1,36 @@
 package dev.kush.aicodeagent.model;
 
 public enum ModelType {
-    OPENAI_CHAT("openAiChatModel", "chat", """
-        Groq LLaMA 3.3 70B – Open-source, high-speed conversational model
-
-        Model: llama-3.3-70b-versatile
-        Use for: Real-time AI agents, multilingual chat, customer support, math/code reasoning, function/tool calls
-        Strengths: Ultra-fast inference, strong reasoning, open-source, low cost
-        Weaknesses: Less creative and polished than GPT models
-        Best when: Prioritizing speed, cost, and openness in production-grade chat interfaces
-    """),
+    OPENAI_CHAT("kimiK2Model", "chat", """
+            Moonshot Kimi K2 Instruct – Open-weight, MoE-based agentic model with high efficiency
+            
+            Model: kimi-k2-1t-moe
+            Use for: Autonomous AI agents, advanced tool use, multi-turn code reasoning, enterprise automation, complex planning
+            Strengths: 1T parameter MoE with 32B active experts, long context (128k), strong in code and reasoning, extremely low token cost
+            Weaknesses: Infrastructure closed-source, limited English community adoption, stability may vary
+            Best when: You need a high-capacity open model for tool-augmented agents or long-context problem solving
+            """),
 
     AZURE_CHAT("azureChatModel", "chat", """
-        Azure OpenAI GPT-4.1 – Enterprise-grade AI with deep reasoning and security
-
-        Model: gpt-4.1
-        Use for: Complex reasoning, code generation, instruction following, long-context agents, secure enterprise workflows
-        Strengths: Long context, strong reasoning, enterprise compliance and support
-        Weaknesses: Higher latency and cost; requires Azure ecosystem
-        Best when: Needing secure, reliable, high-performance AI for business-critical applications
-    """),
+            Azure OpenAI GPT-4.1 – Enterprise-grade AI with deep reasoning and security
+            
+            Model: gpt-4.1
+            Use for: Complex reasoning, multimodal inputs, code generation, instruction following, long-context agents, secure workflows
+            Strengths: 1M token context, strong code/math performance, enterprise compliance, robust multimodal support
+            Weaknesses: Higher cost and latency, Azure-only deployment
+            Best when: You need secure, high-performance AI for business-critical or compliance-heavy applications
+            """),
 
     AZURE_MINI_CHAT("azureMiniChatModel", "chat", """
-        Azure GPT-4.1 Mini – Lightweight, fast, cost-effective conversational model
+            Azure GPT-4.1 Mini – Fast, cost-efficient model for conversational agents
+            
+            Model: gpt-4.1-mini
+            Use for: High-volume chatbots, lightweight assistants, DevOps/CI agents, knowledge retrieval, finance/healthcare workflows
+            Strengths: Lower latency and cost, supports long context, suitable for scalable deployment
+            Weaknesses: Slightly reduced reasoning vs full GPT-4.1, fewer fine-tuned capabilities
+            Best when: Optimizing for speed and cost in high-throughput environments without complex reasoning
+            """);
 
-        Model: gpt-4.1-mini
-        Use for: High-throughput chatbots, FAQs, lightweight assistants, DevOps/CI pipelines, healthcare/finance/government apps
-        Strengths: Fast responses, cost-efficient for frequent queries
-        Weaknesses: Less capable in complex reasoning and structured output
-        Best when: Handling simple, high-volume interactions with budget or latency constraints
-    """);
 
     private final String beanName;
     private final String type;
