@@ -43,7 +43,10 @@ public class AgentService {
                 .build();
 
         final ChatModelDecision chatModelDecision = chatClient.prompt()
-                .system("You are a helpful AI assistant. your task is to help decide which chat model to use based on the query.")
+                .system("""
+                You are a helpful AI assistant. your task is to help decide which chat model to use based on the query.
+                try to use cheap models first, if the query is complex or requires more advanced capabilities, use more expensive models.
+                """)
                 .user("""
                         Here is user query: %s
                         Based on the query, decide which chat model to use, return response as a JSON object with the following structure:

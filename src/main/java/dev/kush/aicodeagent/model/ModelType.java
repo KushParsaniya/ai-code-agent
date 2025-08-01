@@ -1,7 +1,7 @@
 package dev.kush.aicodeagent.model;
 
 public enum ModelType {
-    OPENAI_CHAT("kimiK2Model", "chat", """
+    OPENAI_CHAT("openAiChatModel", "chat", """
             Moonshot Kimi K2 Instruct – Open-weight, MoE-based agentic model with high efficiency
             
             Model: kimi-k2-1t-moe
@@ -9,6 +9,7 @@ public enum ModelType {
             Strengths: 1T parameter MoE with 32B active experts, long context (128k), strong in code and reasoning, extremely low token cost
             Weaknesses: Infrastructure closed-source, limited English community adoption, stability may vary
             Best when: You need a high-capacity open model for tool-augmented agents or long-context problem solving
+            Pricing level: cheap
             """),
 
     AZURE_CHAT("azureChatModel", "chat", """
@@ -18,7 +19,8 @@ public enum ModelType {
             Use for: Complex reasoning, multimodal inputs, code generation, instruction following, long-context agents, secure workflows
             Strengths: 1M token context, strong code/math performance, enterprise compliance, robust multimodal support
             Weaknesses: Higher cost and latency, Azure-only deployment
-            Best when: You need secure, high-performance AI for business-critical or compliance-heavy applications
+            Best when: You need secure, high-performance AI for business-critical or compliance-heavy applications'
+            Pricing level: expensive
             """),
 
     AZURE_MINI_CHAT("azureMiniChatModel", "chat", """
@@ -29,6 +31,7 @@ public enum ModelType {
             Strengths: Lower latency and cost, supports long context, suitable for scalable deployment
             Weaknesses: Slightly reduced reasoning vs full GPT-4.1, fewer fine-tuned capabilities
             Best when: Optimizing for speed and cost in high-throughput environments without complex reasoning
+            Pricing level: medium
             """);
 
 
