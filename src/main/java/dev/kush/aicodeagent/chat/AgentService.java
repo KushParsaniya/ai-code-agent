@@ -17,15 +17,21 @@ public class AgentService {
     private final ChatModel azureChatModel;
     private final ChatModel azureMiniChatModel;
     private final ChatModel fastChatModel;
+    private final ChatModel xAIGrokChatModel;
+    private final ChatModel xAIGrokFastChatModel;
 
     public AgentService(@Qualifier("openAiChatModel") ChatModel openAiChatModel,
                         @Qualifier("azureChatModel") ChatModel azureChatModel,
                         @Qualifier("azureMiniChatModel") ChatModel azureMiniChatModel,
-                        @Qualifier("fastAiChatModel") ChatModel fastChatModel) {
+                        @Qualifier("fastAiChatModel") ChatModel fastChatModel,
+                        @Qualifier("xAIGrokChatModel") ChatModel xAIGrokChatModel,
+                        @Qualifier("xAIGrokFastChatModel") ChatModel xAIGrokFastChatModel) {
         this.openAiChatModel = openAiChatModel;
         this.azureChatModel = azureChatModel;
         this.azureMiniChatModel = azureMiniChatModel;
         this.fastChatModel = fastChatModel;
+        this.xAIGrokChatModel = xAIGrokChatModel;
+        this.xAIGrokFastChatModel = xAIGrokFastChatModel;
     }
 
     private ChatModel getChatModel(String beanName) {
@@ -33,12 +39,13 @@ public class AgentService {
             case "openAiChatModel" -> openAiChatModel;
             case "azureChatModel" -> azureChatModel;
             case "azureMiniChatModel" -> azureMiniChatModel;
+            case "xAIGrokChatModel" -> xAIGrokChatModel;
             default -> throw new IllegalArgumentException("Unknown chat model: " + beanName);
         };
     }
 
     public ChatModel decideChatModel(String query) {
-        ChatClient chatClient = ChatClient.builder(fastChatModel)
+        ChatClient chatClient = ChatClient.builder(xAIGrokFastChatModel)
                 .defaultAdvisors(new SimpleLoggerAdvisor())
                 .build();
 
@@ -71,7 +78,7 @@ public class AgentService {
 
     // make it Async
     public String summarize(String query) {
-        ChatClient chatClient = ChatClient.builder(fastChatModel)
+        ChatClient chatClient = ChatClient.builder(xAIGrokFastChatModel)
                 .defaultAdvisors(new SimpleLoggerAdvisor())
                 .build();
 

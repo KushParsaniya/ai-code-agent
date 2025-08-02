@@ -32,7 +32,19 @@ public enum ModelType {
             Weaknesses: Slightly reduced reasoning vs full GPT-4.1, fewer fine-tuned capabilities
             Best when: Optimizing for speed and cost in high-throughput environments without complex reasoning
             Pricing level: medium
-            """);
+            """),
+
+    XAI_GROK4("xAiGrokModel", "chat", """
+        xAI Grok‑4 – Our latest and greatest flagship model, offering unparalleled performance in natural language, math and reasoning – the perfect jack of all trades.
+        
+        Model: grok‑4 / grok‑4‑heavy
+        Use for: Advanced reasoning, scientific and academic problem‑solving, coding, long reasoning pipelines, real‑time analytics
+        Strengths: Claimed PhD‑level performance across benchmarks; massive context window (up to 256,000 tokens); real‑time web and X platform integration; multi‑agent “Heavy” mode; strong in code/math/science.
+        Weaknesses: Still evolving multimodal support; occasional behavior issues (e.g. prior antisemitic outputs); slower latency especially in multi‑agent mode; trust and safety challenges.
+        Best when: You need frontier‑level reasoning or developer‑grade tool use, long‑context planning, real‑time insights, or complex academic/code generation.
+        Pricing level: premium ($30/month standard, $300/month for “Heavy”).
+        """);
+
 
 
     private final String beanName;

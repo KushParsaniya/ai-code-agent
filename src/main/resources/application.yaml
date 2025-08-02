@@ -36,6 +36,12 @@ azure:
     api-key: ${AZURE_EMBEDDING_API_KEY}
     model: ${AZURE_EMBEDDING_MODEL}
 
+x-ai-grok:
+  api-key: ${X_AI_API_KEY}
+  base-url: ${X_AI_BASE_URL:https://api.x.ai}
+  model: ${X_AI_MODEL:grok-4-0709}   #grok-4-0709
+  fast-model: ${X_AI_FAST_MODEL:grok-3-fast}
+
 logging:
   level:
     'org.springframework.ai': DEBUG

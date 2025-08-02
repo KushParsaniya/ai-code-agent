@@ -22,11 +22,13 @@ public class ModelConfig {
     private final AzureChatProperties azureChatProperties;
     private final AzureEmbeddingProperties azureEmbeddingProperties;
     private final OpenAiProperties openAiProperties;
+    private final XAIGrokProperties xAIGrokProperties;
 
-    public ModelConfig(AzureChatProperties azureChatProperties, AzureEmbeddingProperties azureEmbeddingProperties, OpenAiProperties openAiProperties) {
+    public ModelConfig(AzureChatProperties azureChatProperties, AzureEmbeddingProperties azureEmbeddingProperties, OpenAiProperties openAiProperties, XAIGrokProperties xAIGrokProperties) {
         this.azureChatProperties = azureChatProperties;
         this.azureEmbeddingProperties = azureEmbeddingProperties;
         this.openAiProperties = openAiProperties;
+        this.xAIGrokProperties = xAIGrokProperties;
     }
 
     @Bean("openAiChatModel")
@@ -52,6 +54,37 @@ public class ModelConfig {
                 .build();
         OpenAiChatOptions openAiChatOptions = OpenAiChatOptions.builder()
                 .model(openAiProperties.getFastModel())
+                .build();
+        return OpenAiChatModel.builder()
+                .openAiApi(openAiApi)
+                .defaultOptions(openAiChatOptions)
+                .build();
+    }
+
+    @Bean("xAIGrokChatModel")
+    ChatModel xAIGrokChatModel() {
+        OpenAiApi openAiApi = OpenAiApi.builder()
+                .apiKey(xAIGrokProperties.getApiKey())
+                .baseUrl(xAIGrokProperties.getBaseUrl())
+                .build();
+        OpenAiChatOptions openAiChatOptions = OpenAiChatOptions.builder()
+                .model(xAIGrokProperties.getModel())
+                .reasoningEffort("low")
+                .build();
+        return OpenAiChatModel.builder()
+                .openAiApi(openAiApi)
+                .defaultOptions(openAiChatOptions)
+                .build();
+    }
+
+    @Bean("xAIGrokFastChatModel")
+    ChatModel xAIGrokFastChatModel() {
+        OpenAiApi openAiApi = OpenAiApi.builder()
+                .apiKey(xAIGrokProperties.getApiKey())
+                .baseUrl(xAIGrokProperties.getBaseUrl())
+                .build();
+        OpenAiChatOptions openAiChatOptions = OpenAiChatOptions.builder()
+                .model(xAIGrokProperties.getFastModel())
                 .build();
         return OpenAiChatModel.builder()
                 .openAiApi(openAiApi)
